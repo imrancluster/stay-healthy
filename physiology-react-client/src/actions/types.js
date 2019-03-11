@@ -1,0 +1,1 @@
+export const GET_HOSPITALS = "GET_HOSPITALS";

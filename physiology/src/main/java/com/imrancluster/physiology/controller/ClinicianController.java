@@ -6,6 +6,7 @@ import com.imrancluster.physiology.services.MapValidationErrorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,6 +46,7 @@ public class ClinicianController {
     }
 
     @GetMapping("/{hospitalIdentifier}")
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     public Iterable<Clinician> getCliniciansByHospitalIdentifier(@PathVariable String hospitalIdentifier) {
 
         return clinicianService.getCliniciansByHospitalIdentifier(hospitalIdentifier);

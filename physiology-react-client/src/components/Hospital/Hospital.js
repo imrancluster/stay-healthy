@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Link} from "react-router-dom"
 
 class Hospital extends Component {
   render() {
@@ -6,10 +7,12 @@ class Hospital extends Component {
     const { hospital } = this.props;
 
     return (
-      <tr>
-        <td>{hospital.name}</td>
-        <td>{hospital.address}</td>
-      </tr>
+      <div className="col col-lg-6">  
+        <Link to={`/hospital/${hospital.id}`}>
+          <h2 className="title">{hospital.name}</h2>
+          <p className="address">{hospital.address}</p>
+        </Link>
+      </div>
     )
   }
 }

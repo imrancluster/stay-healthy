@@ -31,3 +31,32 @@
     transform: rotate(360deg);
   }
 }
+
+
+/** Hospital List */
+.hospital-list-section a {
+  color: #212529;
+  text-decoration: none;
+}
+
+.hospital-list-section a:hover {
+  color: #212529;
+  text-decoration:none; 
+  cursor:pointer;  
+}
+.create-new-hospital {
+  position: absolute;
+  right: 50px;
+  border: 50px;
+  font-size: 3em;
+  z-index: 999;
+}
+
+.create-new-hospital a {
+  color: #663399;
+}
+
+.add-hospital-section .btn-primary {
+  background-color: #663399;
+  border-color: #663399;
+}

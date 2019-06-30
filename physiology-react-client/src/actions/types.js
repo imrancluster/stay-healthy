@@ -1,1 +1,5 @@
 export const GET_HOSPITALS = "GET_HOSPITALS";
+export const GET_HOSPITAL = "GET_HOSPITAL";
+
+export const GET_CLINICIANS = "GET_CLINICIANS";
+export const GET_CLINICIAN = "GET_CLINICIAN";

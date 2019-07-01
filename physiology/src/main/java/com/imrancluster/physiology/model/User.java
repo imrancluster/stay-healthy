@@ -2,6 +2,8 @@ package com.imrancluster.physiology.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.NaturalId;
+import org.springframework.core.annotation.Order;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -9,6 +11,11 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+
+// JSON Type Field
+// https://vladmihalcea.com/map-string-jpa-property-json-column-hibernate/
+
 
 @Entity
 @Table(name = "users", uniqueConstraints = {
@@ -48,6 +55,12 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
+    private boolean isActive;
+
+    @NotBlank
+    @Size(max = 10)
+    private String type;
+
     @JsonFormat(pattern = "yyyy-mm-dd")
     @Column(updatable = false)
     private Date createdOn;
@@ -59,11 +72,13 @@ public class User {
 
     }
 
-    public User(String name, String username, String email, String password) {
+    public User(String name, String username, String email, String password, String type) {
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.isActive = false;
+        this.type = type;
     }
 
     public Long getId() {
@@ -128,6 +143,22 @@ public class User {
 
     public void setUpdatedOn(Date updatedOn) {
         this.updatedOn = updatedOn;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
     }
 
     @PrePersist

@@ -61,6 +61,9 @@ public class User {
     @Size(max = 10)
     private String type;
 
+    @Column(nullable = true)
+    private String token;
+
     @JsonFormat(pattern = "yyyy-mm-dd")
     @Column(updatable = false)
     private Date createdOn;
@@ -153,12 +156,20 @@ public class User {
         this.type = type;
     }
 
-    public boolean getIsActive() {
+    public boolean isActive() {
         return isActive;
     }
 
-    public void setIsActive(boolean isActive) {
-        this.isActive = isActive;
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     @PrePersist

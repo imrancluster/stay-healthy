@@ -31,6 +31,7 @@ public class RegistrationListener implements
     }
 
     private void confirmRegistration(OnRegistrationCompleteEvent event) {
+
         User user = event.getUser();
         String token = UUID.randomUUID().toString();
 
@@ -43,10 +44,13 @@ public class RegistrationListener implements
                 = event.getAppUrl() + "/regitrationConfirm.html?token=" + token;
         String message = "Test registration message";
 
+        String confirmationLink = " <a href='http://localhost:8091" + confirmationUrl + "'>Click Here</a>";
+
         SimpleMailMessage email = new SimpleMailMessage();
+        email.setFrom("imran@test.com");
         email.setTo(recipientAddress);
         email.setSubject(subject);
-        email.setText(message + " rn" + "http://localhost:8091" + confirmationUrl);
+        email.setText(message + confirmationLink);
         mailSender.send(email);
     }
 }
